@@ -1,0 +1,43 @@
+version: '3.3'
+services:
+  jira-software:
+    build: .
+    image: ragedunicorn/jira-software:1.0.0-stable
+    volumes:
+      - jira_home:/var/atlassian/jira
+      - jira_logs:/opt/atlassian/jira/logs
+    depends_on:
+      - postgresql
+    networks:
+      - jira-software
+    ports:
+      - "8080:8080"
+    labels:
+      com.ragedunicorn.jira-software.environment: "prod"
+      com.ragedunicorn.jira-software.description: "JIRA Core"
+  postgresql:
+    image: ragedunicorn/postgresql:1.0.0-stable
+    volumes:
+      - postgresql_data:/var/lib/postgresql
+    networks:
+      - jira-software
+    expose:
+      - "5432"
+    secrets:
+      - com.ragedunicorn.postgresql.app_user
+      - com.ragedunicorn.postgresql.app_user_password
+    labels:
+      com.ragedunicorn.postgresql.environment: "prod"
+      com.ragedunicorn.postgresql.description: "PostgreSQL"
+volumes:
+  jira_home: {}
+  jira_logs: {}
+  postgresql_data: {}
+networks:
+  jira-software:
+    driver: bridge
+secrets:
+  com.ragedunicorn.postgresql.app_user:
+    external: true
+  com.ragedunicorn.postgresql.app_user_password:
+    external: true

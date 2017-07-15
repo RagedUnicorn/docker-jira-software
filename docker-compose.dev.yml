@@ -1,0 +1,41 @@
+version: '3.3'
+services:
+  jira-software:
+    build: .
+    image: ragedunicorn/jira-software:1.0.0-dev
+    volumes:
+      - jira_home:/var/atlassian/jira
+      - jira_logs:/opt/atlassian/jira/logs
+    depends_on:
+      - postgresql
+    networks:
+      - jira-software
+    ports:
+      - "8080:8080"
+    stdin_open: true
+    tty: true
+    entrypoint: /bin/sh
+    labels:
+      com.ragedunicorn.jira-software.environment: "dev"
+      com.ragedunicorn.jira-software.description: "JIRA Core"
+  postgresql:
+    image: ragedunicorn/postgresql:1.0.0-dev
+    volumes:
+      - postgresql_data:/var/lib/postgresql
+    networks:
+      - jira-software
+    expose:
+      - "5432"
+    stdin_open: true
+    tty: true
+    entrypoint: /bin/sh
+    labels:
+      com.ragedunicorn.postgresql.environment: "dev"
+      com.ragedunicorn.postgresql.description: "PostgreSQL"
+volumes:
+  jira_home: {}
+  jira_logs: {}
+  postgresql_data: {}
+networks:
+  jira-software:
+    driver: bridge
