@@ -32,7 +32,7 @@ else
   docker volume create --name "${DOCKER_JIRA_SOFTWARE_DATA_VOLUME}" > /dev/null
 fi
 
-# check if jira data volume already exists
+# check if jira logs volume already exists
 docker volume inspect "${DOCKER_JIRA_SOFTWARE_LOGS_VOLUME}" > /dev/null 2>&1
 
 if [ $? -eq 0 ]; then
