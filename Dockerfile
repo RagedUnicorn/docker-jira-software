@@ -23,7 +23,7 @@ ENV \
 
 
 # explicitly set user/group IDs
-RUN addgroup -S "${JIRA_USER}" -g 9999 && adduser -S -G "${JIRA_GROUP}" -u 9999 "${JIRA_USER}"
+RUN addgroup -S "${JIRA_GROUP}" -g 9999 && adduser -S -G "${JIRA_GROUP}" -u 9999 "${JIRA_USER}"
 
 RUN \
   set -ex; \
