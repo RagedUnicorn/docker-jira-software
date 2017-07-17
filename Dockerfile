@@ -58,7 +58,7 @@ RUN \
   chown -R "${JIRA_USER}":"${JIRA_GROUP}" "${JIRA_INSTALL}/work"; \
   chown -R "${JIRA_USER}":"${JIRA_GROUP}" "${JIRA_INSTALL}/conf"; \
   sed --in-place "s/java version/openjdk version/g" "${JIRA_INSTALL}/bin/check-java.sh"; \
-  echo -e "\njira.home=$JIRA_HOME" >> "${JIRA_INSTALL}/atlassian-jira/WEB-INF/classes/jira-application.properties"
+  echo -e "\njira.home=${JIRA_HOME}" >> "${JIRA_INSTALL}/atlassian-jira/WEB-INF/classes/jira-application.properties"
 
 # add launch script
 COPY docker-entrypoint.sh /
