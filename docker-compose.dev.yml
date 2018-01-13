@@ -2,7 +2,7 @@ version: '3.3'
 services:
   jira-software:
     build: .
-    image: ragedunicorn/jira-software:1.0.0-dev
+    image: ragedunicorn/jira-software:1.0.1-dev
     volumes:
       - jira_home:/var/atlassian/jira
       - jira_logs:/opt/atlassian/jira/logs
