@@ -32,22 +32,16 @@ RUN \
   set -ex; \
   apk add --no-cache \
     tar="${TAR_VERSION}" \
-    curl="${CURL_VERSION}"
-
-RUN \
+    curl="${CURL_VERSION}"; \
   mkdir -p "${JIRA_HOME}"; \
   mkdir -p  "${JIRA_HOME}/caches/indexes"; \
   chmod -R 700 "${JIRA_HOME}"; \
   chown -R "${JIRA_USER}":"${JIRA_GROUP}" "${JIRA_HOME}"; \
-  mkdir -p "${JIRA_INSTALL}/conf/Catalina";
-
-RUN \
-  set -ex; \
-  curl --location "https://www.atlassian.com/software/jira/downloads/binary/atlassian-jira-software-${JIRA_SOFTWARE_VERSION}.tar.gz" | tar -xz --directory "${JIRA_INSTALL}" --strip-components=1 --no-same-owner; \
-  curl --location "https://jdbc.postgresql.org/download/postgresql-9.4.1212.jar" -o "${JIRA_INSTALL}/lib/postgresql-9.4.1212.jar";
-
-RUN \
-  set -ex; \
+  mkdir -p "${JIRA_INSTALL}/conf/Catalina"; \
+  curl --location "https://www.atlassian.com/software/jira/downloads/binary/atlassian-jira-software-${JIRA_SOFTWARE_VERSION}.tar.gz" \
+    | tar -xz --directory "${JIRA_INSTALL}" --strip-components=1 --no-same-owner; \
+  curl --location "https://jdbc.postgresql.org/download/postgresql-9.4.1212.jar" \
+    -o "${JIRA_INSTALL}/lib/postgresql-9.4.1212.jar"; \
   chmod -R 700 "${JIRA_INSTALL}/logs"; \
   chmod -R 700 "${JIRA_INSTALL}/temp"; \
   chmod -R 700 "${JIRA_INSTALL}/work"; \
