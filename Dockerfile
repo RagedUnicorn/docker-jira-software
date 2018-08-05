@@ -33,12 +33,12 @@ WORKDIR /home
 RUN \
   set -ex; \
   apk add --no-cache \
-    su-exec="${SU_EXEC_VERSION}"; \
-  mkdir -p "${JIRA_HOME}"; \
-  mkdir -p  "${JIRA_HOME}/caches/indexes"; \
-  chmod -R 700 "${JIRA_HOME}"; \
-  chown -R "${JIRA_USER}":"${JIRA_GROUP}" "${JIRA_HOME}"; \
-  mkdir -p "${JIRA_INSTALL}/conf/Catalina"; \
+    su-exec="${SU_EXEC_VERSION}" && \
+  mkdir -p "${JIRA_HOME}" && \
+  mkdir -p  "${JIRA_HOME}/caches/indexes" && \
+  chmod -R 700 "${JIRA_HOME}" && \
+  chown -R "${JIRA_USER}":"${JIRA_GROUP}" "${JIRA_HOME}" && \
+  mkdir -p "${JIRA_INSTALL}/conf/Catalina" && \
   if ! wget -q "https://www.atlassian.com/software/jira/downloads/binary/atlassian-jira-software-${JIRA_SOFTWARE_VERSION}.tar.gz"; then \
     echo >&2 "Error: Failed to download Jira binary"; \
     exit 1; \
@@ -48,15 +48,15 @@ RUN \
     echo >&2 "Error: Failed to download Postgresql driver"; \
     exit 1; \
   fi && \
-  chmod -R 700 "${JIRA_INSTALL}/logs"; \
-  chmod -R 700 "${JIRA_INSTALL}/temp"; \
-  chmod -R 700 "${JIRA_INSTALL}/work"; \
-  chmod -R 700 "${JIRA_INSTALL}/conf"; \
-  chown -R "${JIRA_USER}":"${JIRA_GROUP}" "${JIRA_INSTALL}/logs"; \
-  chown -R "${JIRA_USER}":"${JIRA_GROUP}" "${JIRA_INSTALL}/temp"; \
-  chown -R "${JIRA_USER}":"${JIRA_GROUP}" "${JIRA_INSTALL}/work"; \
-  chown -R "${JIRA_USER}":"${JIRA_GROUP}" "${JIRA_INSTALL}/conf"; \
-  sed --in-place "s/java version/openjdk version/g" "${JIRA_INSTALL}/bin/check-java.sh"; \
+  chmod -R 700 "${JIRA_INSTALL}/logs" && \
+  chmod -R 700 "${JIRA_INSTALL}/temp" && \
+  chmod -R 700 "${JIRA_INSTALL}/work" && \
+  chmod -R 700 "${JIRA_INSTALL}/conf" && \
+  chown -R "${JIRA_USER}":"${JIRA_GROUP}" "${JIRA_INSTALL}/logs" && \
+  chown -R "${JIRA_USER}":"${JIRA_GROUP}" "${JIRA_INSTALL}/temp" && \
+  chown -R "${JIRA_USER}":"${JIRA_GROUP}" "${JIRA_INSTALL}/work" && \
+  chown -R "${JIRA_USER}":"${JIRA_GROUP}" "${JIRA_INSTALL}/conf" && \
+  sed --in-place "s/java version/openjdk version/g" "${JIRA_INSTALL}/bin/check-java.sh" && \
   echo -e "\njira.home=${JIRA_HOME}" >> "${JIRA_INSTALL}/atlassian-jira/WEB-INF/classes/jira-application.properties"
 
 # add healthcheck script
