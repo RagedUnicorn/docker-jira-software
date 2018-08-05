@@ -24,7 +24,6 @@ ENV \
   JIRA_DATA_DIR=/var/atlassian/jira \
   JIRA_LOGS_DIR=/opt/atlassian/jira/logs
 
-
 # explicitly set user/group IDs
 RUN addgroup -S "${JIRA_GROUP}" -g 9999 && adduser -S -G "${JIRA_GROUP}" -u 9999 "${JIRA_USER}"
 
