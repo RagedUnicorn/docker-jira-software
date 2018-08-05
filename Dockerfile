@@ -11,7 +11,7 @@ LABEL com.ragedunicorn.maintainer="Michael Wiesendanger <michael.wiesendanger@gm
 ENV \
   JIRA_SOFTWARE_VERSION=7.4.0 \
   SU_EXEC_VERSION=0.2-r0 \
-  CURL_VERSION=7.57.0-r0 \
+  CURL_VERSION=7.61.0-r0 \
   TAR_VERSION=1.29-r1
 
 ENV \
