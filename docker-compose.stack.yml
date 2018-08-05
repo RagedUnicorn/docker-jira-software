@@ -7,8 +7,6 @@ services:
       - jira_logs:/opt/atlassian/jira/logs
     depends_on:
       - postgresql
-    networks:
-      - jira-software
     ports:
       - "8080:8080"
     healthcheck:
@@ -24,8 +22,6 @@ services:
     image: ragedunicorn/postgresql:1.1.0-stable
     volumes:
       - postgresql_data:/var/lib/postgresql
-    networks:
-      - jira-software
     secrets:
       - com.ragedunicorn.postgresql.app_user
       - com.ragedunicorn.postgresql.app_user_password
@@ -42,9 +38,6 @@ volumes:
   jira_home: {}
   jira_logs: {}
   postgresql_data: {}
-networks:
-  jira-software:
-    driver: overlay
 secrets:
   com.ragedunicorn.postgresql.app_user:
     external: true
