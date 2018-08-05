@@ -53,11 +53,15 @@ RUN \
   sed --in-place "s/java version/openjdk version/g" "${JIRA_INSTALL}/bin/check-java.sh"; \
   echo -e "\njira.home=${JIRA_HOME}" >> "${JIRA_INSTALL}/atlassian-jira/WEB-INF/classes/jira-application.properties"
 
+# add healthcheck script
+COPY docker-healthcheck.sh /
+
 # add launch script
 COPY docker-entrypoint.sh /
 
 RUN \
-  chmod 755 docker-entrypoint.sh
+  chmod 755 /docker-entrypoint.sh && \
+  chmod 755 /docker-healthcheck.sh
 
 EXPOSE 8080
 

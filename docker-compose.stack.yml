@@ -11,6 +11,12 @@ services:
       - jira-software
     ports:
       - "8080:8080"
+    healthcheck:
+      test: ["CMD", "/docker-healthcheck.sh"]
+      interval: 1m
+      timeout: 10s
+      retries: 3
+      start_period: 1m
     labels:
       com.ragedunicorn.jira-software.environment: "prod"
       com.ragedunicorn.jira-software.description: "JIRA Core"
@@ -23,6 +29,12 @@ services:
     secrets:
       - com.ragedunicorn.postgresql.app_user
       - com.ragedunicorn.postgresql.app_user_password
+    healthcheck:
+      test: ["CMD", "/docker-healthcheck.sh"]
+      interval: 1m
+      timeout: 10s
+      retries: 3
+      start_period: 1m
     labels:
       com.ragedunicorn.postgresql.environment: "prod"
       com.ragedunicorn.postgresql.description: "PostgreSQL"
