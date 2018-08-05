@@ -102,6 +102,10 @@ The image allows for certain arguments being overridden by build args.
 
 They all have a default value and don't have to be overridden. For details see the Dockerfile.
 
+## Persistence
+
+The container is storing data in the docker volume configured by the environment variable `${JIRA_DATA_DIR}` and `${JIRA_LOGS_DIR}`.
+
 ## Healthcheck
 
 The production and the stack image supports a simple healthcheck showing whether the container is healthy or not. This can be configured inside `docker-compose.yml` or `docker-compose.stack.yml`

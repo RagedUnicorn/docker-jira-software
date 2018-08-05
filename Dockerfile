@@ -22,7 +22,9 @@ ENV \
   JIRA_USER="${JIRA_USER}" \
   JIRA_GROUP="${JIRA_GROUP}" \
   JIRA_HOME=/var/atlassian/jira \
-  JIRA_INSTALL=/opt/atlassian/jira
+  JIRA_INSTALL=/opt/atlassian/jira \
+  JIRA_DATA_DIR=/var/atlassian/jira \
+  JIRA_LOGS_DIR=/opt/atlassian/jira/logs
 
 
 # explicitly set user/group IDs
@@ -72,6 +74,6 @@ EXPOSE 8080
 # Set volume mount points for installation and home directory. Changes to the
 # home directory needs to be persisted as well as parts of the installation
 # directory due to eg. logs.
-VOLUME ["/var/atlassian/jira", "/opt/atlassian/jira/logs"]
+VOLUME ["${JIRA_DATA_DIR}", "${JIRA_LOGS_DIR}"]
 
 ENTRYPOINT ["/docker-entrypoint.sh"]
