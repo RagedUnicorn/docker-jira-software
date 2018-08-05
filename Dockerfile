@@ -8,6 +8,10 @@ LABEL com.ragedunicorn.maintainer="Michael Wiesendanger <michael.wiesendanger@gm
 #  / /_/ // // _, _/ ___ |    ___/ / /_/ / __/ /_ | |/ |/ / /_/ / /  /  __/
 #  \____/___/_/ |_/_/  |_|   /____/\____/_/  \__/ |__/|__/\__,_/_/   \___/
 
+# image args
+ARG JIRA_USER=jira
+ARG JIRA_GROUP=jira
+
 ENV \
   JIRA_SOFTWARE_VERSION=7.4.0 \
   SU_EXEC_VERSION=0.2-r0 \
@@ -15,8 +19,8 @@ ENV \
   TAR_VERSION=1.29-r1
 
 ENV \
-  JIRA_USER=jira \
-  JIRA_GROUP=jira \
+  JIRA_USER="${JIRA_USER}" \
+  JIRA_GROUP="${JIRA_GROUP}" \
   JIRA_HOME=/var/atlassian/jira \
   JIRA_INSTALL=/opt/atlassian/jira
 
