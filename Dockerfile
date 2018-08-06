@@ -43,10 +43,6 @@ RUN \
     exit 1; \
   fi && \
   tar zxf atlassian-jira-software-"${JIRA_SOFTWARE_VERSION}".tar.gz --directory  "${JIRA_INSTALL}" --strip-components=1 --no-same-owner && \
-  if ! wget -q "https://jdbc.postgresql.org/download/postgresql-9.4.1212.jar" -P "${CONFLUENCE_INSTALL}/lib/"; then \
-    echo >&2 "Error: Failed to download Postgresql driver"; \
-    exit 1; \
-  fi && \
   chmod -R 700 "${JIRA_INSTALL}/logs" && \
   chmod -R 700 "${JIRA_INSTALL}/temp" && \
   chmod -R 700 "${JIRA_INSTALL}/work" && \
