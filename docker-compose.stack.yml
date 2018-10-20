@@ -1,7 +1,7 @@
 version: '3.6'
 services:
   jira-software:
-    image: ragedunicorn/jira-software:1.1.1-stable
+    image: ragedunicorn/jira-software:1.2.0-stable
     volumes:
       - jira_home:/var/atlassian/jira
       - jira_logs:/opt/atlassian/jira/logs
@@ -19,7 +19,7 @@ services:
       com.ragedunicorn.jira-software.environment: "prod"
       com.ragedunicorn.jira-software.description: "JIRA Core"
   postgresql:
-    image: ragedunicorn/postgresql:1.1.0-stable
+    image: ragedunicorn/postgresql:1.2.0-stable
     volumes:
       - postgresql_data:/var/lib/postgresql
     secrets:
