@@ -14,6 +14,8 @@ ARG JIRA_GROUP=jira
 
 ENV \
   JIRA_SOFTWARE_VERSION=8.0.2 \
+  BASH_VERSION=4.4.19-r1 \
+  NSS_VERSION=3.41-r0 \
   SU_EXEC_VERSION=0.2-r0
 
 ENV \
@@ -32,7 +34,9 @@ WORKDIR /home
 RUN \
   set -ex; \
   apk add --no-cache \
-    su-exec="${SU_EXEC_VERSION}" && \
+    su-exec="${SU_EXEC_VERSION}" \
+    nss="${NSS_VERSION}" \
+    bash="${BASH_VERSION}" && \
   mkdir -p "${JIRA_HOME}" && \
   mkdir -p  "${JIRA_HOME}/caches/indexes" && \
   chmod -R 700 "${JIRA_HOME}" && \

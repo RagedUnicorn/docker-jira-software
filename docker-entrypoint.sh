@@ -4,4 +4,4 @@
 
 set -euo pipefail
 
-exec su-exec ${JIRA_USER} /opt/atlassian/jira/bin/catalina.sh run
+exec su-exec ${JIRA_USER} /opt/atlassian/jira/bin/start-jira.sh -fg run
