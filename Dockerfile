@@ -14,6 +14,7 @@ ARG JIRA_GROUP=jira
 
 ENV \
   JIRA_SOFTWARE_VERSION=8.0.2 \
+  POSTGRESQL_VERSION=11.1-r0 \
   BASH_VERSION=4.4.19-r1 \
   NSS_VERSION=3.41-r0 \
   SU_EXEC_VERSION=0.2-r0
@@ -36,6 +37,7 @@ RUN \
   apk add --no-cache \
     su-exec="${SU_EXEC_VERSION}" \
     nss="${NSS_VERSION}" \
+    postgresql="${POSTGRESQL_VERSION}" \
     bash="${BASH_VERSION}" && \
   mkdir -p "${JIRA_HOME}" && \
   mkdir -p  "${JIRA_HOME}/caches/indexes" && \

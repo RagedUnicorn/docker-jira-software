@@ -6,6 +6,11 @@ services:
     volumes:
       - jira_home:/var/atlassian/jira
       - jira_logs:/opt/atlassian/jira/logs
+    environment:
+      POSTGRESQL_APP_USER: "app"
+      POSTGRESQL_APP_PASSWORD: "app"
+      POSTGRESQL_DATABASE_HOSTNAME: "postgresql"
+      JIRA_DATABASE_NAME: "jira"
     depends_on:
       - postgresql
     networks:
@@ -22,6 +27,9 @@ services:
     image: ragedunicorn/postgresql:${POSTGRESQL_TAG_VERSION}-dev
     volumes:
       - postgresql_data:/var/lib/postgresql
+    environment:
+      POSTGRESQL_APP_USER: "app"
+      POSTGRESQL_APP_PASSWORD: "app"
     networks:
       - jira-software
     expose:

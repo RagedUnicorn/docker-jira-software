@@ -5,6 +5,9 @@ services:
     volumes:
       - jira_home:/var/atlassian/jira
       - jira_logs:/opt/atlassian/jira/logs
+    environment:
+      POSTGRESQL_DATABASE_HOSTNAME: "postgresql"
+      JIRA_DATABASE_NAME: "jira"
     depends_on:
       - postgresql
     ports:
