@@ -25,7 +25,7 @@ services:
       start_period: 1m
     labels:
       com.ragedunicorn.jira-software.environment: "prod"
-      com.ragedunicorn.jira-software.description: "JIRA Core"
+      com.ragedunicorn.jira-software.description: "JIRA Software"
   postgresql:
     image: ragedunicorn/postgresql:${POSTGRESQL_TAG_VERSION}-stable
     volumes:

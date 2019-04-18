@@ -22,7 +22,7 @@ services:
     entrypoint: /bin/sh
     labels:
       com.ragedunicorn.jira-software.environment: "dev"
-      com.ragedunicorn.jira-software.description: "JIRA Core"
+      com.ragedunicorn.jira-software.description: "JIRA Software"
   postgresql:
     image: ragedunicorn/postgresql:${POSTGRESQL_TAG_VERSION}-dev
     volumes:
